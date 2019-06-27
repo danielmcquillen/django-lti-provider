@@ -97,8 +97,6 @@ class LTIRoutingView(LTIAuthMixin, View):
 class LTILandingPage(LTIAuthMixin, TemplateView):
     template_name = 'lti_provider/landing_page.html'
 
-
-    @method_decorator(csrf_exempt)
     def dispatch(self, *args, **kwargs):
         return super(LTILandingPage, self).dispatch(*args, **kwargs)
 
