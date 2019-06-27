@@ -27,12 +27,12 @@ from setuptools import setup
 
 setup(
     name="django-lti-provider",
-    version="0.3.3",
+    version="0.3.4",
     author="Susan Dreher",
     author_email="sdreher@columbia.edu",
     url="https://github.com/ccnmtl/django-lti-provider",
-    description="LTI helper",
-    long_description="LTI Helper",
+    description="LTI helper, modified by Daniel McQuillen",
+    long_description="LTI Helper, modified by Daniel McQuillen. I've updated dependencies and moved some code towards Django 2 standards.",
     install_requires=[
         "Django",
         "nameparser",
