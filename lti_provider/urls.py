@@ -3,6 +3,7 @@ from django.conf.urls import url
 from lti_provider.views import LTIConfigView, LTILandingPage, LTIRoutingView, \
     LTICourseEnableView, LTIPostGrade, LTIFailAuthorization, LTICourseConfigure
 
+app_name = "django_lti_provider"
 
 urlpatterns = [
     url(r'^config.xml$', LTIConfigView.as_view(), {}, 'lti-config'),
