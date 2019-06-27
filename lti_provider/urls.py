@@ -1,20 +1,15 @@
-from django.conf.urls import url
 
+from django.urls import include, path
 from lti_provider.views import LTIConfigView, LTILandingPage, LTIRoutingView, \
     LTICourseEnableView, LTIPostGrade, LTIFailAuthorization, LTICourseConfigure
 
-app_name = "django_lti_provider"
-
 urlpatterns = [
-    url(r'^config.xml$', LTIConfigView.as_view(), {}, 'lti-config'),
-    url(r'^auth$', LTIFailAuthorization.as_view(), {}, 'lti-fail-auth'),
-    url(r'^course/config$',
-        LTICourseConfigure.as_view(), {}, 'lti-course-config'),
-    url(r'^course/enable/$',
-        LTICourseEnableView.as_view(), {}, 'lti-course-enable'),
-    url(r'^landing/$', LTILandingPage.as_view(), {}, 'lti-landing-page'),
-    url('^grade/$', LTIPostGrade.as_view(), {}, 'lti-post-grade'),
-    url(r'^$', LTIRoutingView.as_view(), {}, 'lti-login'),
-    url(r'^assignment/(?P<assignment_name>.*)/$',
-        LTIRoutingView.as_view(), {}, 'lti-assignment-view'),
+    path('config.xml', LTIConfigView.as_view(), name='lti-config'),
+    path('auth', LTIFailAuthorization.as_view(), name='lti-fail-auth'),
+    path('course/config', LTICourseConfigure.as_view(), name='lti-course-config'),
+    path('course/enable/', LTICourseEnableView.as_view(), name='lti-course-enable'),
+    path('landing/', LTILandingPage.as_view(), name='lti-landing-page'),
+    path('grade/', LTIPostGrade.as_view(), name='lti-post-grade'),
+    path('', LTIRoutingView.as_view(), name='lti-login'),
+    path('assignment/<slug:assignment_name>/', LTIRoutingView.as_view(), name='lti-assignment-view'),
 ]
