@@ -113,7 +113,6 @@ class LTI(object):
         """
         try:
             params = self._params(request)
-            logger.info(f"LTI: _verify_request: Incoming params: {params}")
             verify_request_common(self.consumers(),
                                   request.build_absolute_uri(),
                                   request.method, request.META,
@@ -175,7 +174,6 @@ class LTI(object):
     def consumer_user_id(self, request):
         consumer_user_id = "%s-%s" % \
             (self.oauth_consumer_key(request), self.user_id(request))
-        logger.info(f"LTI: consumer_user_id(): {consumer_user_id}")
         return consumer_user_id
 
     def course_context(self, request):
@@ -208,18 +206,14 @@ class LTI(object):
         name = request.session.get('lis_person_name_full', None)
         if not name or len(name) < 1:
             name = self.user_id(request)
-
-        logger.info(f"LTI: created user_fullname is {name}")
         return name or ''
 
     def user_id(self, request):
         user_id = request.session.get('user_id', None)
-        logger.info(f"LTI: user_id(): {user_id}")
         return user_id
 
     def user_identifier(self, request):
         user_identifier = request.session.get(LTI_PROPERTY_USER_USERNAME, None)
-        logger.info(f"LTI: user_identifier(): {user_identifier}")
         return user_identifier
 
     def user_roles(self, request):  # pylint: disable=no-self-use
